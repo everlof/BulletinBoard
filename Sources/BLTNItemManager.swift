@@ -5,6 +5,10 @@
 
 import UIKit
 
+public protocol BLTNInitialConfiguration: UIView {
+    var isHiddenWhenPresentedInBulletin: Bool { get }
+}
+
 /**
  * An object that manages the presentation of a bulletin.
  *
@@ -622,7 +626,7 @@ extension BLTNItemManager {
             }
 
             for arrangedSubview in newHideableArrangedSubviews {
-                arrangedSubview.isHidden = false
+                arrangedSubview.isHidden = (arrangedSubview as? BLTNInitialConfiguration)?.isHiddenWhenPresentedInBulletin  ?? false
             }
 
         }
